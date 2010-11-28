@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="baseMapper" class="org.springframework.aop.framework.ProxyFactoryBean" abstract="true">
+		<property name="interceptorNames">
+			<list>
+				<value>insert.advisor</value>
+				<value>update.advisor</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userMapperImpl" class="org.mybatis.spring.mapper.MapperFactoryBean"> 
+		<property  name="mapperInterface"  value="com.bulain.mybatis.dao.UserMapper"  />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" /> 
+	</bean>
+	<bean id="userMapper" parent="baseMapper">
+		<property name="target" ref="userMapperImpl"/>
+	</bean> 
+</beans>

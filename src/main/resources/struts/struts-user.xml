@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="user" namespace="/user" extends="order-default">
+        <action name="list" class="userAction" method="list">
+            <result>/user/list.jsp</result>
+        </action>
+        <action name="new" class="userAction" method="newn">
+            <result>/user/new.jsp</result>
+        </action>
+		<action name="create" class="userAction" method="create">
+			<interceptor-ref name="orderStack" />
+            <result type="redirectAction">list</result>
+            <result name="input">/user/new.jsp</result>
+        </action>
+        <action name="edit" class="userAction" method="edit">
+            <result>/user/edit.jsp</result>
+        </action>
+		<action name="update" class="userAction" method="update">
+			<interceptor-ref name="orderStack" />
+            <result type="redirectAction">list</result>
+            <result name="input">/user/edit.jsp</result>
+        </action>
+        <action name="show" class="userAction" method="show">
+            <result>/user/show.jsp</result>
+        </action>
+		<action name="destroy" class="userAction" method="destroy">
+            <result type="redirectAction">list</result>
+            <result name="input" type="redirectAction">list</result>
+        </action>
+    </package>
+</struts>

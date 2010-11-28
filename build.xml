@@ -1,0 +1,23 @@
+<project name="struts2-demo" default="copy" basedir=".">
+	<property file="build.properties"/>
+	
+	<path id="classpath">
+		<fileset dir="${java.lib.dir}">
+			<include name="*.jar" />
+		</fileset>
+	</path>
+
+	<target name="copy">
+		<copy todir="target/${ant.project.name}">
+			<fileset dir="src/main/webapp" includes="**/*" />
+		</copy>
+		<copy todir="target/classes">
+			<fileset dir="src/main/resources" includes="**/*" />
+		</copy>
+		<native2ascii dest="target/classes" src="src/main/resources" includes="**/*.chinese" ext=".properties" encoding="UTF-8"/>
+		
+		<copy todir="target/${ant.project.name}/WEB-INF/classes">
+			<fileset dir="target/classes" includes="**/*" />
+		</copy>
+	</target>
+</project>

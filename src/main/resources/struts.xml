@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="true" />
+    <constant name="struts.multipart.maxSize" value="20971520" />
+    <constant name="struts.custom.i18n.resources" value="messages" />
+    <constant name="struts.configuration.xml.reload" value="true"></constant>
+    <constant name="struts.i18n.reload" value="true"></constant>
+
+	<package name="order-default" extends="json-default">
+		<interceptors> 
+			<interceptor-stack name="orderDefaultStack">  
+			    <interceptor-ref name="paramsPrepareParamsStack" />
+		    </interceptor-stack>
+			
+		    <interceptor-stack name="orderStack">  
+			 <!--<interceptor-ref name="token"/> -->   
+			    <interceptor-ref name="orderDefaultStack" />  
+		    </interceptor-stack>
+		</interceptors> 
+		
+		<default-interceptor-ref name="orderDefaultStack"/>
+		
+		<global-results>
+			<result name="error" type="redirect">/error/422.html</result>
+			<result name="invalid.token" type="redirect">/error/423.html</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error" exception="java.lang.Exception"></exception-mapping>
+		</global-exception-mappings>
+	</package>
+	
+
+	<include file="struts/struts-user.xml"/>
+
+    <package name="default" namespace="/" extends="struts-default">
+        <default-action-ref name="index" />
+    </package>
+</struts>

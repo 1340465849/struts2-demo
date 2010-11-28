@@ -1,0 +1,48 @@
+<!DOCTYPE dataset SYSTEM "my-dataset.dtd">
+<dataset>
+	<table name="users">
+		<column>id</column>
+        <column>first_name</column>
+        <column>last_name</column>
+        <!-- deleteByPrimaryKey -->
+        <row>
+            <value>101</value>
+            <value>first_name_101</value>
+            <value>last_name_101</value>
+        </row>
+        <!-- selectByPrimaryKey -->
+        <row>
+            <value>102</value>
+            <value>first_name_102</value>
+            <value>last_name_102</value>
+        </row>
+        <!-- updateByPrimaryKeySelective -->
+        <row>
+            <value>103</value>
+            <value>first_name_103</value>
+            <value>last_name_103</value>
+        </row>
+        <!-- updateByPrimaryKey -->
+        <row>
+            <value>104</value>
+            <value>first_name_104</value>
+            <value>last_name_104</value>
+        </row>
+        <!-- page -->
+        <row>
+            <value>105</value>
+            <value>first_name_page</value>
+            <value>last_name_page</value>
+        </row>
+        <row>
+            <value>106</value>
+            <value>first_name_page</value>
+            <value>last_name_page</value>
+        </row>
+        <row>
+            <value>107</value>
+            <value>first_name_page</value>
+            <value>last_name_page</value>
+        </row>
+	</table>
+</dataset>

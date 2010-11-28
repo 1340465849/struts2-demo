@@ -1,0 +1,5 @@
+This is a struts 2 demo.
+use the next technology: spring, mybatis, struts2
+
+Please run the next command:
+run: mvn clean package

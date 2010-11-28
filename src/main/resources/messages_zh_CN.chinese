@@ -1,0 +1,61 @@
+title.search=查询
+title.list=查询
+title.add=添加
+title.edit=编辑
+title.show=查看
+title.request=请求
+title.approval=审核
+title.info=信息
+
+common.createdBy=创建人
+common.createdAt=创建日期
+common.updatedBy=修改人
+common.updatedAt=修改日期
+
+info.create={0}信息 保存成功
+info.update={0}信息 更新成功
+info.delete={0}信息 删除成功
+
+error.create={0}信息 保存失败
+error.update={0}信息 更新失败
+error.delete={0}信息 删除失败
+
+action.action=动作
+action.show=查看
+action.new=添加
+action.edit=编辑
+action.destroy=删除
+action.add=添加
+action.download=下载
+action.create=保存
+action.update=更新
+action.search=查询
+action.save=保存
+action.back=返回
+action.choose=选择
+action.cancel=取消
+action.remove=删除
+action.delete=删除
+action.close=关闭 
+action.login=登录
+action.logout=注销
+action.reset=重置
+action.request=请求
+action.approve=审核
+
+validate.required=${getText(fieldName)}:  不能留空
+validate.requiredstring=${getText(fieldName)}: 不能为空字符
+validate.int=${getText(fieldName)}: 必须在${min}与${max}之间
+validate.long=${getText(fieldName)}: 必须在${min}与${max}之间
+validate.short=${getText(fieldName)}: 必须在${min}与${max}之间
+validate.double=${getText(fieldName)}: 必须在${min}与${max}之间
+validate.date=${getText(fieldName)}: 必须在${min}与${max}之间
+validate.expression=?
+validate.fieldexpression=?
+validate.email=${getText(fieldName)}: 不合法邮件的地址
+validate.url=${getText(fieldName)}: 不合法URL
+validate.visitor=?
+validate.conversion=${getText(fieldName)}: 不能正确转换
+validate.stringlength=${getText(fieldName)}: 长度必须在${minLength}与${maxLength}之间
+validate.regex=?
+validate.conditionalvisitor=?

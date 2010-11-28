@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean name="insert.pointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="insert*"/>
+	</bean>
+	<bean name="update.pointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+		<property name="mappedName" value="update*"/>
+	</bean>
+	
+	<bean name="insert.advice" class="com.bulain.common.advice.InsertBeforeAdvice" />
+	<bean name="update.advice" class="com.bulain.common.advice.UpdateBeforeAdvice" />
+	
+	<bean name="insert.advisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="insert.advice"/>
+		<property name="pointcut" ref="insert.pointcut"/>
+	</bean>
+	<bean name="update.advisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+		<property name="advice" ref="update.advice"/>
+		<property name="pointcut" ref="update.pointcut"/>
+	</bean>
+</beans>
