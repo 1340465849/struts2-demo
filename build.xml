@@ -2,7 +2,7 @@
 	<property file="build.properties"/>
 	
 	<path id="classpath">
-		<fileset dir="${java.lib.dir}">
+		<fileset dir="target/${ant.project.name}/WEB-INF/lib">
 			<include name="*.jar" />
 		</fileset>
 	</path>
