@@ -2,4 +2,6 @@ This is a struts 2 demo.
 use the next technology: spring, mybatis, struts2
 
 Please run the next command:
-run: mvn clean package
+1, create mysql database, and change src/main/resources/jdbc.properties
+2, execute sql create table, mysql_create.sql
+3, mvn clean package
