@@ -16,7 +16,7 @@ create table orders(
 	name varchar(20),
 	note varchar(200),
 	wf_id varchar(20),
-	wf_status varchar(20)
+	wf_status varchar(20),
 	
 	created_by varchar(20),
 	created_at datetime,
