@@ -2,7 +2,7 @@ package com.bulain.mybatis.controller;
 
 import java.util.List;
 
-import com.bulain.common.Struts2TestCase;
+import com.bulain.common.test.Struts2TestCase;
 import com.bulain.mybatis.model.User;
 import com.bulain.mybatis.pojo.UserView;
 import com.opensymphony.xwork2.Action;

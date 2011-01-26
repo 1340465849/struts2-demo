@@ -2,7 +2,7 @@ package com.bulain.mybatis.dao;
 
 import java.util.List;
 
-import com.bulain.common.ServiceTestCase;
+import com.bulain.common.test.ServiceTestCase;
 import com.bulain.mybatis.model.User;
 import com.bulain.mybatis.pojo.UserSearch;
 

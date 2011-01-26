@@ -2,8 +2,8 @@ package com.bulain.mybatis.service;
 
 import java.util.List;
 
+import com.bulain.common.exception.ServiceException;
 import com.bulain.common.page.Page;
-import com.bulain.common.service.ServiceException;
 import com.bulain.mybatis.dao.UserMapper;
 import com.bulain.mybatis.model.User;
 import com.bulain.mybatis.pojo.UserSearch;
