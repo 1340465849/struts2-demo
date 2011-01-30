@@ -16,7 +16,7 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
-	<bean id="baseTransactionProxy" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean" abstract="true">
+	<bean id="transactionInterceptor" class="org.springframework.transaction.interceptor.TransactionInterceptor">
 		<property name="transactionManager" ref="transactionManager" />
 		<property name="transactionAttributes">
 			<props>
@@ -27,6 +27,19 @@
 			</props>
 		</property>
 	</bean>
+    
+	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator"> 
+        <property name="beanNames"> 
+            <list>
+				<value>*Service</value>
+			</list>
+        </property> 
+        <property name="interceptorNames"> 
+            <list> 
+                <value>transactionInterceptor</value> 
+            </list> 
+        </property> 
+    </bean> 
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"> 
 		<property name="dataSource" ref="dataSource" /> 
