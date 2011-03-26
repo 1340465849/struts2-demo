@@ -1,6 +1,14 @@
 package com.bulain.mybatis.service;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.transaction.AfterTransaction;
+import org.springframework.test.context.transaction.BeforeTransaction;
 
 import com.bulain.common.page.Page;
 import com.bulain.common.test.ServiceTestCase;
@@ -8,23 +16,21 @@ import com.bulain.mybatis.model.User;
 import com.bulain.mybatis.pojo.UserSearch;
 
 public class UserServiceImplTest extends ServiceTestCase {
+    @Autowired
 	private UserService userService;
 	
-	protected void setUp() throws Exception {
-		super.setUp();
+    @BeforeTransaction
+	public void setUpDB() throws Exception {
 		super.setUpDB("test-data/init_users.xml");
-		userService = (UserService) applicationContext.getBean("userService");
 	}
 
-	protected void tearDown() throws Exception {
+    @AfterTransaction
+	public void tearDownDB() throws Exception {
 		super.tearDownDB();
-		super.tearDown();
 	}
 	
-	public static void main(String[] args){
-		junit.textui.TestRunner.run(UserServiceImplTest.class);
-	}
-	public void testGet() {
+    @Test
+    public void testGet() {
 		User user = userService.get(Integer.valueOf(102));
 		assertNotNull(user);
 		
@@ -32,13 +38,15 @@ public class UserServiceImplTest extends ServiceTestCase {
 		assertEquals("last_name_102", user.getLastName());
 	}
 
+    @Test
 	public void testInsert() {
 		User user = new User();
 		user.setFirstName("firstName");
 		user.setLastName("lastName");
 		userService.insert(user);
 	}
-
+    
+    @Test
 	public void testUpdate() {
 		User user = new User();
 		user.setId(Integer.valueOf(104));
@@ -47,10 +55,12 @@ public class UserServiceImplTest extends ServiceTestCase {
 		userService.update(user, true);
 	}
 
+    @Test
 	public void testDelete() {
 		userService.delete(Integer.valueOf(101));
 	}
 
+    @Test
 	public void testFind() {
 		UserSearch search = new UserSearch();
 		search.setFirstName("first_name_page");
@@ -59,6 +69,7 @@ public class UserServiceImplTest extends ServiceTestCase {
 		assertEquals(3, find.size());
 	}
 
+    @Test
 	public void testCount() {
 		UserSearch search = new UserSearch();
 		search.setFirstName("first_name_page");
@@ -67,6 +78,7 @@ public class UserServiceImplTest extends ServiceTestCase {
 		assertEquals(Long.valueOf(3), count);
 	}
 
+    @Test
 	public void testPage() {
 		UserSearch search = new UserSearch();
 		search.setFirstName("first_name_page");

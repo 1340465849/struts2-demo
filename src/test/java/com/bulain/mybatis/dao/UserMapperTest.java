@@ -1,34 +1,40 @@
 package com.bulain.mybatis.dao;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
+
 import java.util.List;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.transaction.AfterTransaction;
+import org.springframework.test.context.transaction.BeforeTransaction;
 
 import com.bulain.common.test.ServiceTestCase;
 import com.bulain.mybatis.model.User;
 import com.bulain.mybatis.pojo.UserSearch;
 
 public class UserMapperTest extends ServiceTestCase {
-	private UserMapper userMapper;
+	@Autowired
+    private UserMapper userMapper;
 	
-	protected void setUp() throws Exception {
-		super.setUp();
+	@BeforeTransaction
+	public void setUpDB() throws Exception {
 		super.setUpDB("test-data/init_users.xml");
-		userMapper = (UserMapper) applicationContext.getBean("userMapper");
 	}
 
-	protected void tearDown() throws Exception {
+	@AfterTransaction
+	public void tearDownDB() throws Exception {
 		super.tearDownDB();
-		super.tearDown();
 	}
 	
-	public static void main(String[] args){
-		junit.textui.TestRunner.run(UserMapperTest.class);
-	}
-	
+	@Test
 	public void testDeleteByPrimaryKey() {
 		int deleteByPrimaryKey = userMapper.deleteByPrimaryKey(Integer.valueOf(101));
 		assertEquals(1, deleteByPrimaryKey);
 	}
 
+	@Test
 	public void testInsert() {
 		User record = new User();
 		record.setFirstName("firstName");
@@ -37,6 +43,7 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals(1, insert);
 	}
 
+	@Test
 	public void testInsertSelective() {
 		User record = new User();
 		record.setFirstName("firstName");
@@ -45,6 +52,7 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals(1, insert);
 	}
 
+	@Test
 	public void testSelectByPrimaryKey() {
 		User selectByPrimaryKey = userMapper.selectByPrimaryKey(Integer.valueOf(102));
 		assertNotNull(selectByPrimaryKey);
@@ -53,6 +61,7 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals("last_name_102", selectByPrimaryKey.getLastName());
 	}
 
+	@Test
 	public void testUpdateByPrimaryKeySelective() {
 		User record = new User();
 		record.setId(Integer.valueOf(103));
@@ -62,6 +71,7 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals(1, updateByPrimaryKeySelective);
 	}
 
+	@Test
 	public void testUpdateByPrimaryKey() {
 		User record = new User();
 		record.setId(Integer.valueOf(104));
@@ -71,6 +81,7 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals(1, updateByPrimaryKey);
 	}
 
+	@Test
 	public void testFind(){
 		UserSearch search = new UserSearch();
 		search.setFirstName("first_name_page");
@@ -79,12 +90,14 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals(3, find.size());
 	}
 	
+	@Test
 	public void testShoudExecuteWhenNoParam(){
 		UserSearch search = new UserSearch();
 		List<User> find = userMapper.find(search);
 		assertEquals(7, find.size());
 	}
 	
+	@Test
 	public void testShoudExecuteWhenFirstNameIsNull(){
 		UserSearch search = new UserSearch();
 		search.setLastName("last_name_page");
@@ -92,6 +105,7 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals(3, find.size());
 	}
 	
+	@Test
 	public void testShoudExecuteWhenFirstNameIsNullStr(){
 		UserSearch search = new UserSearch();
 		search.setFirstName("");
@@ -100,6 +114,7 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals(3, find.size());
 	}
 	
+	@Test
 	public void testShoudExecuteWhenLastNameIsNull(){
 		UserSearch search = new UserSearch();
 		search.setFirstName("first_name_page");
@@ -107,6 +122,7 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals(3, find.size());
 	}
 	
+	@Test
 	public void testShoudExecuteWhenLastNameIsNullStr(){
 		UserSearch search = new UserSearch();
 		search.setFirstName("first_name_page");
@@ -114,6 +130,7 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals(3, find.size());
 	}
 	
+	@Test
 	public void testCount(){
 		UserSearch search = new UserSearch();
 		search.setFirstName("first_name_page");
@@ -122,6 +139,7 @@ public class UserMapperTest extends ServiceTestCase {
 		assertEquals(Long.valueOf(3), count);
 	}
 	
+	@Test
 	public void testPage(){
 		UserSearch search = new UserSearch();
 		search.setFirstName("first_name_page");

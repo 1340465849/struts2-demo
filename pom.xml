@@ -11,12 +11,13 @@
 	<groupId>com.bulain</groupId>
 	<artifactId>struts2-demo</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.1</version>
 	<name>struts2-demo</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <common.version>1.0.1</common.version>
 		<ant.version>1.6.5</ant.version>
 		<tools.version>1.5</tools.version>
 	</properties>
@@ -25,7 +26,7 @@
 		<dependency>
 			<groupId>com.bulain</groupId>
 			<artifactId>activiti5-common</artifactId>
-			<version>1.0.0</version>
+			<version>${common.version}</version>
 		</dependency>
 		<!-- test -->
 		<dependency>

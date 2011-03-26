@@ -2,27 +2,41 @@ package com.bulain.mybatis.controller;
 
 import java.util.List;
 
-import com.bulain.common.test.Struts2TestCase;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+import org.springframework.test.context.transaction.AfterTransaction;
+import org.springframework.test.context.transaction.BeforeTransaction;
+
+import com.bulain.common.test.ActionTestCase;
 import com.bulain.mybatis.model.User;
 import com.bulain.mybatis.pojo.UserView;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionProxy;
 
-public class UserActionTest extends Struts2TestCase {
-	public static void main(String[] args) {
-		junit.textui.TestRunner.run(UserActionTest.class);
-	}
-	
-	protected void setUp() throws Exception {
+public class UserActionTest extends ActionTestCase {
+    
+    @Before
+	public void setUp() throws Exception {
 		super.setUp();
-		super.setUpDB("test-data/init_users.xml");
 	}
 
-	protected void tearDown() throws Exception {
-		super.tearDownDB();
+    @After
+	public void tearDown() throws Exception {
 		super.tearDown();
 	}
 	
+    @BeforeTransaction
+	public void setUpDB() throws Exception{
+	    super.setUpDB("test-data/init_users.xml");
+	}
+	
+    @AfterTransaction
+	public void tearDownDB() throws Exception{
+	    super.tearDownDB();
+	}
+	
+    @Test
 	public void testList() throws Exception {
 		initServletMockObjects();
 		request.setParameter("search.firstName", "first_name_page");
@@ -36,7 +50,8 @@ public class UserActionTest extends Struts2TestCase {
 		List<UserView> listLogin = userAction.getListLogin();
 		assertEquals(3, listLogin.size());
 	}
-
+    
+    @Test
 	public void testNewn() throws Exception {
 		initServletMockObjects();
 		
@@ -49,6 +64,7 @@ public class UserActionTest extends Struts2TestCase {
 		assertNotNull(user);
 	}
 
+    @Test
 	public void testCreate() throws Exception {
 		initServletMockObjects();
 		request.setParameter("user.firstName", "first_name");
@@ -60,6 +76,7 @@ public class UserActionTest extends Struts2TestCase {
 		assertEquals(Action.SUCCESS, result);
 	}
 
+    @Test
 	public void testShow() throws Exception {
 		initServletMockObjects();
 		request.setParameter("id", "102");
@@ -75,6 +92,7 @@ public class UserActionTest extends Struts2TestCase {
 		assertEquals("last_name_102", user.getLastName());
 	}
 
+    @Test
 	public void testEdit() throws Exception {
 		initServletMockObjects();
 		request.setParameter("id", "102");
@@ -90,6 +108,7 @@ public class UserActionTest extends Struts2TestCase {
 		assertEquals("last_name_102", user.getLastName());
 	}
 
+    @Test
 	public void testUpdate() throws Exception {
 		initServletMockObjects();
 		request.setParameter("id", "103");
@@ -102,6 +121,7 @@ public class UserActionTest extends Struts2TestCase {
 		assertEquals(Action.SUCCESS, result);
 	}
 
+    @Test
 	public void testDestroy() throws Exception {
 		initServletMockObjects();
 		request.setParameter("id", "101");
@@ -111,5 +131,4 @@ public class UserActionTest extends Struts2TestCase {
 		String result = proxy.execute();
 		assertEquals(Action.SUCCESS, result);
 	}
-
 }
