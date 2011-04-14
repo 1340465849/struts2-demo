@@ -10,7 +10,7 @@
 	<groupId>com.bulain</groupId>
 	<artifactId>struts2-demo</artifactId>
 	<packaging>war</packaging>
-	<version>1.0.0</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<name>struts2-demo</name>
     <url>https://github.com/bulain/struts2-demo</url>
   
