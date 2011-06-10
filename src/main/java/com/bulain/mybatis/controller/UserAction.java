@@ -3,6 +3,8 @@ package com.bulain.mybatis.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
+
 import com.bulain.common.controller.PageSupportActionSupport;
 import com.bulain.mybatis.model.User;
 import com.bulain.mybatis.pojo.UserSearch;
@@ -75,7 +77,8 @@ public class UserAction extends PageSupportActionSupport{
 	}
 	
 	protected UserView formatItem(User lgn){
-		UserView lgnView = new UserView(lgn);
+		UserView lgnView = new UserView();
+		BeanUtils.copyProperties(lgn, lgnView);
 		return lgnView;
 	}
 	
