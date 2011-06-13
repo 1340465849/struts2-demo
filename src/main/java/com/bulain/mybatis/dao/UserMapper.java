@@ -17,8 +17,8 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
-    
-    //custom
+
+    // custom
     List<User> find(UserSearch search);
     Long count(UserSearch search);
     List<User> page(UserSearch search);
