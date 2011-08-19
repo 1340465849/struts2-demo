@@ -23,7 +23,6 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <common.version>1.0.1</common.version>
-		<ant.version>1.6.5</ant.version>
 		<tools.version>1.5</tools.version>
         <mysql.version>5.0.8</mysql.version>
 	</properties>
@@ -137,11 +136,6 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<dependencies>
-					<dependency>
-						<groupId>ant</groupId>
-						<artifactId>ant-nodeps</artifactId>
-						<version>${ant.version}</version>
-					</dependency>
 					<dependency>
 						<groupId>com.sun</groupId>
 						<artifactId>tools</artifactId>
