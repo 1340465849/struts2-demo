@@ -33,6 +33,11 @@
 			<artifactId>common</artifactId>
 			<version>${common.version}</version>
 		</dependency>
+        <!-- mybatis generator -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+        </dependency>
 		<!-- test -->
 		<dependency>
 			<groupId>junit</groupId>

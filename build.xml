@@ -1,10 +1,11 @@
 <project name="struts2-demo" default="copy" basedir=".">
-	<property file="build.properties"/>
-	
+	<property file="build.properties" />
+
 	<path id="classpath">
 		<fileset dir="target/${ant.project.name}/WEB-INF/lib">
 			<include name="*.jar" />
 		</fileset>
+		<path location="target/classes" />
 	</path>
 
 	<target name="copy">
@@ -14,10 +15,28 @@
 		<copy todir="target/classes">
 			<fileset dir="src/main/resources" includes="**/*" />
 		</copy>
-		<native2ascii dest="target/classes" src="src/main/resources" includes="**/*.chinese" ext=".properties" encoding="UTF-8"/>
-		
+		<native2ascii dest="target/classes" src="src/main/resources" includes="**/*.chinese" ext=".properties" encoding="UTF-8" />
+
 		<copy todir="target/${ant.project.name}/WEB-INF/classes">
 			<fileset dir="target/classes" includes="**/*" />
 		</copy>
+	</target>
+
+	<target name="genfile" description="Generate the files">
+		<mkdir dir="${generator.target}" />
+		<taskdef name="mbggenerator" classname="org.mybatis.generator.ant.GeneratorAntTask">
+			<classpath refid="classpath" />
+		</taskdef>
+		<mbggenerator overwrite="true" configfile="${generator.file}" verbose="true">
+			<propertyset>
+				<propertyref name="generator.jdbcDriver" />
+				<propertyref name="generator.jdbcUrl" />
+				<propertyref name="generator.username" />
+				<propertyref name="generator.password" />
+				<propertyref name="generator.schema" />
+				<propertyref name="generator.packagePrefix" />
+				<propertyref name="generator.target" />
+			</propertyset>
+		</mbggenerator>
 	</target>
 </project>
