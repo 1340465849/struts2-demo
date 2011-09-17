@@ -156,10 +156,10 @@
 							<goal>run</goal>
 						</goals>
 						<configuration>
-							<tasks>
-								<native2ascii dest="${project.build.directory}/classes" src="${project.build.directory}/classes" includes="**/*.chinese" ext=".properties" encoding="UTF-8" />
-							</tasks>
-						</configuration>
+                            <target name="native2ascii">
+                                <native2ascii dest="${project.build.directory}/classes" src="${project.build.directory}/classes" includes="**/*.chinese" ext=".properties" encoding="UTF-8" />
+                            </target>
+                        </configuration>
 					</execution>
 				</executions>
 			</plugin>
