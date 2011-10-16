@@ -7,26 +7,16 @@ import java.util.List;
 
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.transaction.AfterTransaction;
-import org.springframework.test.context.transaction.BeforeTransaction;
 
+import com.bulain.common.dataset.DataSet;
 import com.bulain.common.test.ServiceTestCase;
 import com.bulain.mybatis.model.User;
 import com.bulain.mybatis.pojo.UserSearch;
 
+@DataSet(file="test-data/init_users.xml")
 public class UserMapperTest extends ServiceTestCase {
 	@Autowired
     private UserMapper userMapper;
-	
-	@BeforeTransaction
-	public void setUpDB() throws Exception {
-		super.setUpDB("test-data/init_users.xml");
-	}
-
-	@AfterTransaction
-	public void tearDownDB() throws Exception {
-		super.tearDownDB();
-	}
 	
 	@Test
 	public void testDeleteByPrimaryKey() {
