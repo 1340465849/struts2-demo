@@ -25,6 +25,7 @@
         <common.version>1.0.1</common.version>
 		<tools.version>1.5</tools.version>
         <mysql.version>5.0.8</mysql.version>
+        <migration.env>test</migration.env>
 	</properties>
 
 	<dependencies>
