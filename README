@@ -1,7 +1,35 @@
 This is a struts 2 demo.
 use the next technology: spring, mybatis, struts2
 
-Please run the next command:
-1, create mysql database, and change src/main/resources/jdbc.properties
-2, execute sql create table, mysql_create.sql
+For run test, please run the next command:
+1, create mysql/oracle database
+2, change next file depends on your database type.
+   src/test/resources/mysql.properties
+   src/test/resources/oracle.properties
+3, run the next command depends on your database type.
+   mvn test 
+   mvn test -Poracle
+    
+For run development, please run the next command:
+1, create mysql/oracle database
+2, change next file depends on your database type.
+   src/main/resources/mysql.properties
+   src/main/resources/oracle.properties
+2, run the next command depends on your database type.
+   mvn migration:up -Dmigration.env=development
+   mvn migration:up -Dmigration.env=development -Poracle
 3, mvn clean package
+
+For generator java and xml for mybatis
+1, create mysql/oracle database and create tables.
+2, change build.properties depends on your database type.
+3, run the next command: ant genfile
+
+Useful information for migration plugin.
+    migration:up 
+    migration:down
+    -Dmigration.env=development 
+    -Dmigration.path=src/migration/mysql
+    -Dmigration.down.steps=2
+    -Dmigration.up.steps=2
+

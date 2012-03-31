@@ -27,7 +27,6 @@
         <mysql.version>5.0.8</mysql.version>
         <ojdbc.version>10.2.0.4.0</ojdbc.version>
         <migration.env>test</migration.env>
-        <migration.path>src/migration/mysql</migration.path>
     </properties>
 
     <dependencies>
@@ -128,6 +127,48 @@
                 </executions>
             </plugin>
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.sun</groupId>
+                        <artifactId>tools</artifactId>
+                        <scope>system</scope>
+                        <version>${tools.version}</version>
+                        <systemPath>${java.home}/../lib/tools.jar</systemPath>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>compile</id>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="native2ascii">
+                                <native2ascii dest="${project.build.directory}/classes" src="${project.build.directory}/classes" includes="**/*.chinese" ext=".properties" encoding="UTF-8" />
+                            </target>
+                            <target name="copydevfile">
+                                <copyfile src="src/main/resources/${database.type}.properties" dest="${project.build.directory}/classes/jdbc.properties" />
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>test-compile</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="copytestfile">
+                                <copyfile src="src/test/resources/${database.type}.properties" dest="${project.build.directory}/test-classes/jdbc.properties" />
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <groupId>org.mybatis.maven</groupId>
                 <artifactId>maven-migration-plugin</artifactId>
                 <executions>
@@ -151,32 +192,6 @@
                         <version>${ojdbc.version}</version>
                     </dependency>
                 </dependencies>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>com.sun</groupId>
-                        <artifactId>tools</artifactId>
-                        <scope>system</scope>
-                        <version>${tools.version}</version>
-                        <systemPath>${java.home}/../lib/tools.jar</systemPath>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target name="native2ascii">
-                                <native2ascii dest="${project.build.directory}/classes" src="${project.build.directory}/classes" includes="**/*.chinese" ext=".properties" encoding="UTF-8" />
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -258,4 +273,25 @@
             </plugin>
         </plugins>
     </build>
+    
+    <profiles>
+        <profile>
+            <id>mysql</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <migration.path>src/migration/mysql</migration.path>
+                <database.type>mysql</database.type>
+            </properties>
+        </profile>
+        <profile>
+            <id>oracle</id>
+            <properties>
+                <migration.path>src/migration/oracle</migration.path>
+                <database.type>oracle</database.type>
+            </properties>
+        </profile>
+    </profiles>
+    
 </project>
