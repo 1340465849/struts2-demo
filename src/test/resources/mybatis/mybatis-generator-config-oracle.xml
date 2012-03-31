@@ -19,23 +19,23 @@
     </javaTypeResolver>
     
     <javaModelGenerator targetPackage="${generator.packagePrefix}.model" targetProject="${generator.target}">
-      <property name="enableSubPackages" value="true" />
+      <property name="enableSubPackages" value="false" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
 
     <sqlMapGenerator targetPackage="${generator.packagePrefix}.xml"  targetProject="${generator.target}">
-      <property name="enableSubPackages" value="true" />
+      <property name="enableSubPackages" value="false" />
     </sqlMapGenerator>
     
     <javaClientGenerator type="XMLMAPPER" targetPackage="${generator.packagePrefix}.dao"  targetProject="${generator.target}">
-      <property name="enableSubPackages" value="true" />
+      <property name="enableSubPackages" value="false" />
     </javaClientGenerator>
 
-	<table schema="${generator.schema}" tableName="users" domainObjectName="User" 
-    	enableInsert="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" 
-    	enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
+    <table schema="${generator.schema}" tableName="users" domainObjectName="User" 
+        enableInsert="true" enableSelectByPrimaryKey="true" enableUpdateByPrimaryKey="true" enableDeleteByPrimaryKey="true" 
+        enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false">
       <property name="useActualColumnNames" value="false"/>
-      <generatedKey column="ID" sqlStatement="Mysql" identity="true" />
+      <generatedKey column="ID" sqlStatement="select struts2_sequence.nextval from dual" identity="false" type="pre"/>
     </table>
     
   </context>

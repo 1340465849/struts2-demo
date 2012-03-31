@@ -2,115 +2,119 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bulain.mybatis.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="com.bulain.mybatis.model.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="first_name" property="firstName" jdbcType="VARCHAR" />
-    <result column="last_name" property="lastName" jdbcType="VARCHAR" />
-    <result column="created_by" property="createdBy" jdbcType="VARCHAR" />
-    <result column="created_at" property="createdAt" jdbcType="TIMESTAMP" />
-    <result column="updated_by" property="updatedBy" jdbcType="VARCHAR" />
-    <result column="updated_at" property="updatedAt" jdbcType="TIMESTAMP" />
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="FIRST_NAME" property="firstName" jdbcType="VARCHAR" />
+    <result column="LAST_NAME" property="lastName" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_AT" property="createdAt" jdbcType="DATE" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_AT" property="updatedAt" jdbcType="DATE" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, first_name, last_name, created_by, created_at, updated_by, updated_at
+    ID, FIRST_NAME, LAST_NAME, CREATED_BY, CREATED_AT, UPDATED_BY, UPDATED_AT
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from users
-    where id = #{id}
+    from ${jdbc.schema}.USERS
+    where ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from users
-    where id = #{id}
+    delete from ${jdbc.schema}.USERS
+    where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.bulain.mybatis.model.User" >
-    insert into users (first_name, last_name, created_by, created_at, updated_by, updated_at
-      )
-    values (#{firstName}, #{lastName}, #{createdBy}, #{createdAt}, #{updatedBy}, #{updatedAt}
-      )
-    <selectKey resultType="java.lang.Integer" keyProperty="id" >
-      SELECT LAST_INSERT_ID()
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select struts2_sequence.nextval from dual
     </selectKey>
+    insert into ${jdbc.schema}.USERS (ID, FIRST_NAME, LAST_NAME, 
+      CREATED_BY, CREATED_AT, UPDATED_BY, 
+      UPDATED_AT)
+    values (#{id,jdbcType=INTEGER}, #{firstName,jdbcType=VARCHAR}, #{lastName,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=DATE}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=DATE})
   </insert>
   <insert id="insertSelective" parameterType="com.bulain.mybatis.model.User" >
-    insert into users
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="BEFORE" >
+      select struts2_sequence.nextval from dual
+    </selectKey>
+    insert into ${jdbc.schema}.USERS
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      ID,
       <if test="firstName != null" >
-        first_name,
+        FIRST_NAME,
       </if>
       <if test="lastName != null" >
-        last_name,
+        LAST_NAME,
       </if>
       <if test="createdBy != null" >
-        created_by,
+        CREATED_BY,
       </if>
       <if test="createdAt != null" >
-        created_at,
+        CREATED_AT,
       </if>
       <if test="updatedBy != null" >
-        updated_by,
+        UPDATED_BY,
       </if>
       <if test="updatedAt != null" >
-        updated_at,
+        UPDATED_AT,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      #{id,jdbcType=INTEGER},
       <if test="firstName != null" >
-        #{firstName},
+        #{firstName,jdbcType=VARCHAR},
       </if>
       <if test="lastName != null" >
-        #{lastName},
+        #{lastName,jdbcType=VARCHAR},
       </if>
       <if test="createdBy != null" >
-        #{createdBy},
+        #{createdBy,jdbcType=VARCHAR},
       </if>
       <if test="createdAt != null" >
-        #{createdAt},
+        #{createdAt,jdbcType=DATE},
       </if>
       <if test="updatedBy != null" >
-        #{updatedBy},
+        #{updatedBy,jdbcType=VARCHAR},
       </if>
       <if test="updatedAt != null" >
-        #{updatedAt},
+        #{updatedAt,jdbcType=DATE},
       </if>
     </trim>
-    <selectKey resultType="java.lang.Integer" keyProperty="id" >
-      SELECT LAST_INSERT_ID()
-    </selectKey>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.bulain.mybatis.model.User" >
-    update users
+    update ${jdbc.schema}.USERS
     <set >
       <if test="firstName != null" >
-        first_name = #{firstName},
+        FIRST_NAME = #{firstName,jdbcType=VARCHAR},
       </if>
       <if test="lastName != null" >
-        last_name = #{lastName},
+        LAST_NAME = #{lastName,jdbcType=VARCHAR},
       </if>
       <if test="createdBy != null" >
-        created_by = #{createdBy},
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
       </if>
       <if test="createdAt != null" >
-        created_at = #{createdAt},
+        CREATED_AT = #{createdAt,jdbcType=DATE},
       </if>
       <if test="updatedBy != null" >
-        updated_by = #{updatedBy},
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
       </if>
       <if test="updatedAt != null" >
-        updated_at = #{updatedAt},
+        UPDATED_AT = #{updatedAt,jdbcType=DATE},
       </if>
     </set>
-    where id = #{id}
+    where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.bulain.mybatis.model.User" >
-    update users
-    set first_name = #{firstName},
-      last_name = #{lastName},
-      created_by = #{createdBy},
-      created_at = #{createdAt},
-      updated_by = #{updatedBy},
-      updated_at = #{updatedAt}
-    where id = #{id}
+    update ${jdbc.schema}.USERS
+    set FIRST_NAME = #{firstName,jdbcType=VARCHAR},
+      LAST_NAME = #{lastName,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_AT = #{createdAt,jdbcType=DATE},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_AT = #{updatedAt,jdbcType=DATE}
+    where ID = #{id,jdbcType=INTEGER}
   </update>
   
   <!-- custom -->

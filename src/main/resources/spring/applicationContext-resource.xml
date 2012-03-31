@@ -58,7 +58,7 @@
 		<property  name="mapperLocations">
 			<list>
 				<value>classpath*:mybatis/xml/Common.xml</value>
-				<value>classpath*:mybatis/xml/*Mapper.xml</value>
+				<value>${jdbc.mapper}</value>
 			</list>
 		</property>  
 	</bean> 

@@ -25,7 +25,9 @@
         <common.version>1.0.1</common.version>
         <tools.version>1.5</tools.version>
         <mysql.version>5.0.8</mysql.version>
+        <ojdbc.version>10.2.0.4.0</ojdbc.version>
         <migration.env>test</migration.env>
+        <migration.path>src/migration/mysql</migration.path>
     </properties>
 
     <dependencies>
@@ -76,6 +78,10 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc14</artifactId>
+        </dependency>
+        <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>
         </dependency>
@@ -124,9 +130,6 @@
             <plugin>
                 <groupId>org.mybatis.maven</groupId>
                 <artifactId>maven-migration-plugin</artifactId>
-                <configuration>
-                    <repository>src/migration</repository>
-                </configuration>
                 <executions>
                     <execution>
                         <id>migration-up</id>
@@ -141,6 +144,11 @@
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
                         <version>${mysql.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.oracle</groupId>
+                        <artifactId>ojdbc14</artifactId>
+                        <version>${ojdbc.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>
