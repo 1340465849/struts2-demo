@@ -140,29 +140,29 @@
                 </dependencies>
                 <executions>
                     <execution>
-                        <id>compile</id>
-                        <phase>compile</phase>
+                        <id>copy-resources</id>
+                        <phase>process-resources</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
                         <configuration>
                             <target name="native2ascii">
-                                <native2ascii dest="${project.build.directory}/classes" src="${project.build.directory}/classes" includes="**/*.chinese" ext=".properties" encoding="UTF-8" />
+                                <native2ascii src="${project.build.directory}/classes" dest="${project.build.directory}/classes" includes="**/*.chinese" ext=".properties" encoding="UTF-8" />
                             </target>
                             <target name="copydevfile">
-                                <copyfile src="src/main/resources/${database.type}.properties" dest="${project.build.directory}/classes/jdbc.properties" />
+                                <copy file="src/main/resources/${database.type}.properties" tofile="${project.build.directory}/classes/jdbc.properties" overwrite="true"/>
                             </target>
                         </configuration>
                     </execution>
                     <execution>
-                        <id>test-compile</id>
-                        <phase>test-compile</phase>
+                        <id>copy-test-resources</id>
+                        <phase>process-test-resources</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
                         <configuration>
                             <target name="copytestfile">
-                                <copyfile src="src/test/resources/${database.type}.properties" dest="${project.build.directory}/test-classes/jdbc.properties" />
+                                <copy file="src/test/resources/${database.type}.properties" tofile="${project.build.directory}/test-classes/jdbc.properties" overwrite="true"/>
                             </target>
                         </configuration>
                     </execution>
