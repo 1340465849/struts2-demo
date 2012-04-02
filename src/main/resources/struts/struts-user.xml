@@ -5,6 +5,9 @@
 
 <struts>
     <package name="user" namespace="/user" extends="order-default">
+        <action name="" class="userAction" method="list">
+            <result>/user/list.jsp</result>
+        </action>
         <action name="list" class="userAction" method="list">
             <result>/user/list.jsp</result>
         </action>

@@ -27,6 +27,8 @@
         <mysql.version>5.0.8</mysql.version>
         <ojdbc.version>10.2.0.4.0</ojdbc.version>
         <migration.env>test</migration.env>
+        <migration.path>src/migration/mysql</migration.path>
+        <database.type>mysql</database.type>
     </properties>
 
     <dependencies>
@@ -194,6 +196,25 @@
                 </dependencies>
             </plugin>
             <plugin>
+                <groupId>org.mortbay.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <configuration>
+                    <argLine>-Xmx512m -XX:MaxPermSize=256m</argLine>
+                    <scanIntervalSeconds>10</scanIntervalSeconds>
+                    <stopKey>foo</stopKey>
+                    <stopPort>9999</stopPort>
+                    <webAppConfig>
+                        <contextPath>/struts2-demo</contextPath>
+                    </webAppConfig>
+                    <connectors>
+                        <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                            <port>8082</port>
+                            <maxIdleTime>60000</maxIdleTime>
+                        </connector>
+                    </connectors>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <configuration>
@@ -276,21 +297,38 @@
     
     <profiles>
         <profile>
-            <id>mysql</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <properties>
-                <migration.path>src/migration/mysql</migration.path>
-                <database.type>mysql</database.type>
-            </properties>
-        </profile>
-        <profile>
             <id>oracle</id>
             <properties>
                 <migration.path>src/migration/oracle</migration.path>
                 <database.type>oracle</database.type>
             </properties>
+        </profile>
+        <profile>
+            <id>it</id>
+            <build>
+                <plugins>
+                   <plugin>
+                        <groupId>org.mortbay.jetty</groupId>
+                        <artifactId>jetty-maven-plugin</artifactId>
+                        <configuration>
+                            <argLine>-Xmx512m -XX:MaxPermSize=256m</argLine>
+                            <scanIntervalSeconds>10</scanIntervalSeconds>
+                            <stopKey>foo</stopKey>
+                            <stopPort>9999</stopPort>
+                            <useTestClasspath>true</useTestClasspath>
+                            <webAppConfig>
+                                <contextPath>/struts2-demo</contextPath>
+                            </webAppConfig>
+                            <connectors>
+                                <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
+                                    <port>8082</port>
+                                    <maxIdleTime>60000</maxIdleTime>
+                                </connector>
+                            </connectors>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
     
