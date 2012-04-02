@@ -7,13 +7,13 @@
     </tr>
     <tr>
         <td class="page-form-label"><s:text name="user.firstName"/></td>
-        <td class="page-form-value"><s:property value="user.firstName"/></td>
+        <td class="page-form-value"><span id="show_user_firstName"><s:property value="user.firstName"/></span></td>
         <td></td>
         <td></td>
     </tr>
     <tr>
         <td class="page-form-label"><s:text name="user.lastName"/></td>
-        <td class="page-form-value"><s:property value="user.lastName"/></td>
+        <td class="page-form-value"><span id="show_user_lastName"><s:property value="user.lastName"/></span></td>
         <td></td>
         <td></td>
     </tr>
