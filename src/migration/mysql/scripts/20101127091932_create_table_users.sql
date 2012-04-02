@@ -1,7 +1,7 @@
 --// create table users
 -- Migration SQL that makes the change goes here.
 create table users(
-    id int(11) NOT NULL auto_increment,
+    id  bigint(11) NOT NULL auto_increment,
     first_name varchar(20),
     last_name varchar(20),
     

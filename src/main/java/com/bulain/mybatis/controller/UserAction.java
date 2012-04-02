@@ -3,6 +3,8 @@ package com.bulain.mybatis.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 
 import com.bulain.common.controller.PageSupportActionSupport;
@@ -13,8 +15,10 @@ import com.bulain.mybatis.service.UserService;
 
 public class UserAction extends PageSupportActionSupport {
     private static final long serialVersionUID = -4301484346812182688L;
-
-    private Integer id;
+    private static final Logger LOG = LoggerFactory.getLogger(UserAction.class);
+    private static final String TEXT_USER_MODEL = "user.model";;
+    
+    private Long id;
     private UserSearch search;
     private User user;
     private List<UserView> listLogin;
@@ -39,7 +43,16 @@ public class UserAction extends PageSupportActionSupport {
         return SUCCESS;
     }
     public String create() {
-        userService.insert(user);
+        try {
+            userService.insert(user);
+            String msg = getText("common.createInfo", new String[]{TEXT_USER_MODEL});
+            addActionMessage(msg);
+        } catch (Exception e) {
+            LOG.error("update()", e);
+            String msg = getText("common.createInfo", new String[]{TEXT_USER_MODEL});
+            addActionError(msg);
+            return ERROR;
+        }
         return SUCCESS;
     }
     public String show() {
@@ -51,7 +64,16 @@ public class UserAction extends PageSupportActionSupport {
         return SUCCESS;
     }
     public String update() {
-        userService.update(user, true);
+        try {
+            userService.update(user, true);
+            String msg = getText("common.updateInfo", new String[]{TEXT_USER_MODEL});
+            addActionMessage(msg);
+        } catch (Exception e) {
+            LOG.error("update()", e);
+            String msg = getText("common.updateError", new String[]{TEXT_USER_MODEL});
+            addActionError(msg);
+            return ERROR;
+        }
         return SUCCESS;
     }
     public String destroy() {
@@ -82,10 +104,10 @@ public class UserAction extends PageSupportActionSupport {
         return lgnView;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

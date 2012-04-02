@@ -20,7 +20,7 @@ public class UserMapperTest extends ServiceTestCase {
 	
 	@Test
 	public void testDeleteByPrimaryKey() {
-		int deleteByPrimaryKey = userMapper.deleteByPrimaryKey(Integer.valueOf(101));
+		int deleteByPrimaryKey = userMapper.deleteByPrimaryKey(Long.valueOf(101));
 		assertEquals(1, deleteByPrimaryKey);
 	}
 
@@ -44,7 +44,7 @@ public class UserMapperTest extends ServiceTestCase {
 
 	@Test
 	public void testSelectByPrimaryKey() {
-		User selectByPrimaryKey = userMapper.selectByPrimaryKey(Integer.valueOf(102));
+		User selectByPrimaryKey = userMapper.selectByPrimaryKey(Long.valueOf(102));
 		assertNotNull(selectByPrimaryKey);
 		
 		assertEquals("first_name_102", selectByPrimaryKey.getFirstName());
@@ -54,7 +54,7 @@ public class UserMapperTest extends ServiceTestCase {
 	@Test
 	public void testUpdateByPrimaryKeySelective() {
 		User record = new User();
-		record.setId(Integer.valueOf(103));
+		record.setId(Long.valueOf(103));
 		record.setFirstName("firstName-updated");
 		record.setLastName("lastName-updated");
 		int updateByPrimaryKeySelective = userMapper.updateByPrimaryKeySelective(record);
@@ -64,7 +64,7 @@ public class UserMapperTest extends ServiceTestCase {
 	@Test
 	public void testUpdateByPrimaryKey() {
 		User record = new User();
-		record.setId(Integer.valueOf(104));
+		record.setId(Long.valueOf(104));
 		record.setFirstName("firstName-updated");
 		record.setLastName("lastName-updated");
 		int updateByPrimaryKey = userMapper.updateByPrimaryKey(record);

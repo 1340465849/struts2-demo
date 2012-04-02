@@ -1,7 +1,7 @@
 --// create table orders
 -- Migration SQL that makes the change goes here.
 create table orders(
-    id int(11) NOT NULL auto_increment,
+    id bigint(11) NOT NULL auto_increment,
     name varchar(20),
     note varchar(200),
     wf_id varchar(20),
