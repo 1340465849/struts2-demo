@@ -18,7 +18,7 @@
                 <interceptor-ref name="paramsPrepareParamsStack" />
             </interceptor-stack>
             <interceptor-stack name="orderStack">
-                <interceptor-ref name="token" />
+                <!-- <interceptor-ref name="token" /> -->
                 <interceptor-ref name="orderDefaultStack" />
             </interceptor-stack>
         </interceptors>
