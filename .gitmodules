@@ -1,0 +1,3 @@
+[submodule "src/main/webapp/web-static"]
+	path = src/main/webapp/web-static
+	url = git@github.com:bulain/web-static.git
