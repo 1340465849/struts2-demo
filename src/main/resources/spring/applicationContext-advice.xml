@@ -7,9 +7,19 @@
 	<bean name="update.pointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
 		<property name="mappedName" value="update*"/>
 	</bean>
+    <bean name="paged.pointcut" class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedNames">
+            <list>
+                <value>find*</value>
+                <value>page*</value>
+                <value>count*</value>
+            </list>
+        </property>
+    </bean>
 	
 	<bean name="insert.advice" class="com.bulain.common.advice.InsertBeforeAdvice" />
 	<bean name="update.advice" class="com.bulain.common.advice.UpdateBeforeAdvice" />
+    <bean name="paged.advice" class="com.bulain.common.advice.PagedBeforeAdvice" />
 	
 	<bean name="insert.advisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
 		<property name="advice" ref="insert.advice"/>
@@ -19,6 +29,10 @@
 		<property name="advice" ref="update.advice"/>
 		<property name="pointcut" ref="update.pointcut"/>
 	</bean>
+    <bean name="paged.advisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="advice" ref="paged.advice"/>
+        <property name="pointcut" ref="paged.pointcut"/>
+    </bean>
 	
 	<bean class="org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator">
 		<property name="beanNames">
