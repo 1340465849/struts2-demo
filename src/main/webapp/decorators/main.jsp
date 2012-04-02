@@ -43,7 +43,7 @@
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function(){
         var menus = ['a'];
-        jQueryMenu.cookieMenu(menus, {path:'/activiti5-demo'});
+        jQueryMenu.cookieMenu(menus, {path:'/struts2-demo'});
     });
 </script>
             </div>
