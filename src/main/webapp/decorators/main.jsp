@@ -4,19 +4,19 @@
 <html>
     <head>
         <link href="<s:url value='/web-static/jquery/css/validate/jquery.validate.css'/>" rel="stylesheet" type="text/css"/>
-        <link href="<s:url value='/web-static/jquery/css/ui-lightness/jquery-ui-1.8.4.custom.min.css'/>" rel="stylesheet" type="text/css"/>
-        <link href="<s:url value='/web-static/jquery/css/ui-lightness/jquery-ui-timepicker.min.css'/>" rel="stylesheet" type="text/css"/>
-        <link href="<s:url value='/web-static/static/css/globel.min.css'/>" rel="stylesheet" type="text/css"/>
-        <script src="<s:url value='/web-static/jquery/js/jquery-1.4.2.min.js'/>" type="text/javascript"></script>
-        <script src="<s:url value='/web-static/jquery/js/jquery.validate.min.js'/>" type="text/javascript"></script>
+        <link href="<s:url value='/web-static/jquery/css/ui-lightness/jquery-ui-1.8.4.custom.css'/>" rel="stylesheet" type="text/css"/>
+        <link href="<s:url value='/web-static/jquery/css/ui-lightness/jquery-ui-timepicker.css'/>" rel="stylesheet" type="text/css"/>
+        <link href="<s:url value='/web-static/static/css/globel.css'/>" rel="stylesheet" type="text/css"/>
+        <script src="<s:url value='/web-static/jquery/js/jquery-1.4.2.js'/>" type="text/javascript"></script>
+        <script src="<s:url value='/web-static/jquery/js/jquery.validate.js'/>" type="text/javascript"></script>
         <script src="<s:url value='/web-static/jquery/js/jquery.validate.extends.js'/>" type="text/javascript"></script>
         <s:set name="locale" value="#session['WW_TRANS_I18N_LOCALE']" />
         <script src="<s:url value='/web-static/jquery/js/localization/messages_%{#locale}.js'/>" type="text/javascript"></script>
         <script src="<s:url value='/web-static/jquery/js/jquery-ui-1.8.4.custom.min.js'/>" type="text/javascript"></script>
-        <script src="<s:url value='/web-static/jquery/js/jquery.cookie.min.js'/>" type="text/javascript"></script>
-        <script src="<s:url value='/web-static/static/js/jquery.cookie.extend.min.js'/>" type="text/javascript"></script>
-        <script src="<s:url value='/web-static/static/js/jquery.cookie.menu.min.js'/>" type="text/javascript"></script>
-        <script src="<s:url value='/web-static/jquery/js/jquery.ui.timepicker.min.js'/>" type="text/javascript"></script>
+        <script src="<s:url value='/web-static/jquery/js/jquery.cookie.js'/>" type="text/javascript"></script>
+        <script src="<s:url value='/web-static/static/js/jquery.cookie.extend.js'/>" type="text/javascript"></script>
+        <script src="<s:url value='/web-static/static/js/jquery.cookie.menu.js'/>" type="text/javascript"></script>
+        <script src="<s:url value='/web-static/jquery/js/jquery.ui.timepicker.js'/>" type="text/javascript"></script>
         <script src="<s:url value='/web-static/static/js/public.js'/>" type="text/javascript"></script>
         <title><decorator:title default="sitemesh" /></title>
         <meta http-equiv="pragma" content="no-cache,no-store">
