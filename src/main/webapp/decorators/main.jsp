@@ -46,7 +46,7 @@
 <script language="JavaScript" type="text/javascript">
     $(document).ready(function(){
         var menus = ['a'];
-        jQueryMenu.cookieMenu(menus, {path:'/struts2-demo'});
+        jQueryMenu.cookieMenu(menus, {path:'/struts2-demo', expires:7});
     });
 </script>
             </div>
