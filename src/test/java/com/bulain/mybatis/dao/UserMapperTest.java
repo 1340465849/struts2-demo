@@ -9,12 +9,12 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.bulain.common.dataset.DataSet;
-import com.bulain.common.test.ServiceTestCase;
+import com.bulain.common.test.DaoTestCase;
 import com.bulain.mybatis.model.User;
 import com.bulain.mybatis.pojo.UserSearch;
 
 @DataSet(file="test-data/init_users.xml")
-public class UserMapperTest extends ServiceTestCase {
+public class UserMapperTest extends DaoTestCase {
 	@Autowired
     private UserMapper userMapper;
 	
