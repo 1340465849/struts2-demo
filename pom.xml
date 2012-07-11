@@ -175,9 +175,6 @@
                             <goal>run</goal>
                         </goals>
                         <configuration>
-                            <target name="native2ascii">
-                                <native2ascii src="${project.build.directory}/classes" dest="${project.build.directory}/classes" includes="**/*.chinese" ext=".properties" encoding="UTF-8" />
-                            </target>
                             <target name="copydevfile">
                                 <copy file="src/main/resources/${database.type}.properties" tofile="${project.build.directory}/classes/jdbc.properties" overwrite="true"/>
                             </target>
@@ -192,6 +189,17 @@
                         <configuration>
                             <target name="copytestfile">
                                 <copy file="src/test/resources/${database.type}.properties" tofile="${project.build.directory}/test-classes/jdbc.properties" overwrite="true"/>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <phase>compile</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="native2ascii">
+                                <native2ascii src="src/main/resources" dest="${project.build.directory}/classes" includes="**/*.chinese" ext=".properties" encoding="UTF-8" />
                             </target>
                         </configuration>
                     </execution>
