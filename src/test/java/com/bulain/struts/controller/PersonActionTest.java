@@ -8,9 +8,7 @@ import org.junit.Test;
 
 import com.bulain.common.dataset.SeedDataSet;
 import com.bulain.common.model.Person;
-import com.bulain.common.page.OrderBy;
 import com.bulain.common.page.Page;
-import com.bulain.common.pojo.PersonSearch;
 import com.bulain.common.test.ActionTestCase;
 import com.opensymphony.xwork2.Action;
 import com.opensymphony.xwork2.ActionProxy;
