@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="person" namespace="/person" extends="order-default">
+        <action name="list" class="personAction" method="list">
+            <result>/person/list.jsp</result>
+        </action>
+        <action name="new" class="personAction" method="newn">
+            <result>/person/new.jsp</result>
+        </action>
+		<action name="create" class="personAction" method="create">
+			<interceptor-ref name="orderStack" />
+            <result type="redirectAction">list</result>
+            <result name="input">/person/new.jsp</result>
+        </action>
+        <action name="edit" class="personAction" method="edit">
+            <result>/person/edit.jsp</result>
+        </action>
+		<action name="update" class="personAction" method="update">
+			<interceptor-ref name="orderStack" />
+            <result type="redirectAction">list</result>
+            <result name="input">/person/edit.jsp</result>
+        </action>
+        <action name="show" class="personAction" method="show">
+            <result>/person/show.jsp</result>
+        </action>
+		<action name="destroy" class="personAction" method="destroy">
+            <result type="redirectAction">list</result>
+            <result name="input" type="redirectAction">list</result>
+        </action>
+    </package>
+</struts>

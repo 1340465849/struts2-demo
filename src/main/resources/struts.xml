@@ -32,7 +32,7 @@
         </global-exception-mappings>
     </package>
 
-    <include file="struts/struts-user.xml" />
+    <include file="struts/struts-person.xml" />
 
     <package name="default" namespace="/" extends="struts-default">
         <default-action-ref name="index" />
