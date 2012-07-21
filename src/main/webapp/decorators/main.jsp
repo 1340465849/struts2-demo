@@ -35,7 +35,7 @@
     <div class="section">
         <a id="a" class="header-open" href="javascript:void(0);">Admins</a>
         <ul id="a_ul">
-            <li class="sub-menu"><a href="<s:url value='/user/list.action'/>">User</a></li>
+            <li class="sub-menu"><a href="<s:url value='/person/list.action'/>">Person</a></li>
         </ul>
     </div>
     <div class="section">
